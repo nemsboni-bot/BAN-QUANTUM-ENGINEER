@@ -58,20 +58,20 @@ export default function AboutPage() {
             <div className="mt-2 h-1 w-20 bg-gradient-to-r from-accent to-primary rounded-full" />
             <div className="mt-6 space-y-4 text-steel leading-relaxed">
               <p>
-                BAN Quantum Engineering was established by a team of seasoned engineers with
-                decades of combined experience in the energy and industrial sectors. Our founders
-                recognized the need for an engineering firm that could bridge the gap between
-                traditional drilling operations and modern engineering disciplines.
+                BAN Quantum Engineering was founded with a clear vision: to bridge the gap between
+                traditional drilling operations and modern engineering disciplines. Our team brings
+                hands-on experience in the energy and industrial sectors, ready to deliver
+                practical, high-quality solutions from day one.
               </p>
               <p>
-                Today, we operate across multiple continents, providing integrated engineering
-                services that span the full project lifecycle — from feasibility studies and
-                conceptual design through to fabrication, construction, and commissioning.
+                We provide integrated engineering services that span the full project lifecycle —
+                from feasibility studies and conceptual design through to fabrication, construction,
+                and commissioning.
               </p>
               <p>
-                Our commitment to quality, safety, and technical excellence has made us the partner
-                of choice for operators seeking reliable engineering solutions in demanding
-                environments.
+                Our commitment to quality, safety, and technical excellence drives everything we do
+                as we build lasting partnerships with clients seeking reliable engineering solutions
+                in demanding environments.
               </p>
             </div>
           </div>
@@ -80,8 +80,8 @@ export default function AboutPage() {
               <div className="w-20 h-20 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Award className="w-10 h-10 text-accent" />
               </div>
-              <p className="text-xl font-semibold text-foreground">15+ Years of Excellence</p>
-              <p className="text-sm text-steel mt-1">Trusted by industry leaders worldwide</p>
+              <p className="text-xl font-semibold text-foreground">Committed to Excellence</p>
+              <p className="text-sm text-steel mt-1">Building trust through quality engineering</p>
             </div>
           </div>
         </div>

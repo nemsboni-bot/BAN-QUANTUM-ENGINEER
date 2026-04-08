@@ -11,9 +11,6 @@ import {
   BookOpen,
   ArrowRight,
   Shield,
-  Globe,
-  Award,
-  Users,
 } from "lucide-react";
 import { Section, SectionHeader } from "@/components/ui/section";
 import { Card } from "@/components/ui/card";
@@ -57,13 +54,6 @@ const services = [
     description: "Comprehensive library of API, ASME, ASTM, and ISO engineering standards and references.",
     href: "/references",
   },
-];
-
-const stats = [
-  { icon: Award, value: "15+", label: "Years Experience" },
-  { icon: Globe, value: "50+", label: "Projects Delivered" },
-  { icon: Users, value: "100+", label: "Engineers & Specialists" },
-  { icon: Shield, value: "Zero", label: "Safety Incidents" },
 ];
 
 const containerVariants = {
@@ -168,27 +158,6 @@ export default function HomePage() {
             {/* Right column - the rig SVG is rendered as background above, this keeps grid spacing */}
             <div className="hidden lg:block" aria-hidden="true" />
           </div>
-        </div>
-      </section>
-
-      {/* Stats */}
-      <section className="border-y border-border bg-surface">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-8"
-          >
-            {stats.map((stat) => (
-              <motion.div key={stat.label} variants={itemVariants} className="text-center">
-                <stat.icon className="w-8 h-8 text-accent mx-auto mb-3" />
-                <div className="text-3xl font-bold text-foreground">{stat.value}</div>
-                <div className="text-sm text-steel mt-1">{stat.label}</div>
-              </motion.div>
-            ))}
-          </motion.div>
         </div>
       </section>
 
