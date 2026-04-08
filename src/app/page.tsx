@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import { Section, SectionHeader } from "@/components/ui/section";
 import { Card } from "@/components/ui/card";
+import { DrillingRigSVG } from "@/components/ui/drilling-rig-svg";
 import { projects } from "@/data/projects";
 
 const services = [
@@ -80,12 +81,27 @@ export default function HomePage() {
     <>
       {/* Hero Section */}
       <section className="relative min-h-[90vh] flex items-center overflow-hidden">
+        {/* Animated gradient background */}
         <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary-light to-accent opacity-10 animate-gradient" />
+        {/* Grid pattern overlay */}
         <div className="absolute inset-0" style={{
           backgroundImage: `radial-gradient(circle at 1px 1px, var(--steel-light) 1px, transparent 0)`,
           backgroundSize: "40px 40px",
-          opacity: 0.15,
+          opacity: 0.1,
         }} />
+        {/* Drilling rig background - visible on all screens */}
+        <div className="absolute right-0 top-0 bottom-0 w-full lg:w-1/2 pointer-events-none overflow-hidden">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1.5, delay: 0.3 }}
+            className="absolute inset-0 flex items-center justify-center"
+          >
+            <DrillingRigSVG className="w-full h-full max-h-[90vh] opacity-40 lg:opacity-60" />
+          </motion.div>
+          {/* Fade overlay so text stays readable */}
+          <div className="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-transparent lg:via-background/50" />
+        </div>
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -123,34 +139,34 @@ export default function HomePage() {
                   Contact Us
                 </Link>
               </div>
-            </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, x: 40 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.7, delay: 0.2 }}
-              className="hidden lg:block"
-            >
-              <div className="relative">
-                <div className="w-full aspect-square rounded-2xl bg-gradient-to-br from-surface to-surface-dark border border-border p-8 flex items-center justify-center">
-                  <div className="grid grid-cols-2 gap-6 w-full max-w-sm">
-                    {[Drill, Flame, Cog, HardHat].map((Icon, i) => (
-                      <motion.div
-                        key={i}
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.4, delay: 0.4 + i * 0.1 }}
-                        className="aspect-square rounded-xl bg-background border border-border flex items-center justify-center hover:border-accent transition-colors group"
-                      >
-                        <Icon className="w-12 h-12 text-steel group-hover:text-accent transition-colors" />
-                      </motion.div>
-                    ))}
-                  </div>
-                </div>
-                <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-accent/20 rounded-2xl blur-xl" />
-                <div className="absolute -top-4 -left-4 w-32 h-32 bg-primary/20 rounded-2xl blur-xl" />
+              {/* Quick service icons below CTA */}
+              <div className="mt-10 flex items-center gap-4">
+                {[
+                  { Icon: Drill, label: "Drilling" },
+                  { Icon: Flame, label: "Geothermal" },
+                  { Icon: Cog, label: "Mechanical" },
+                  { Icon: PenTool, label: "Design" },
+                  { Icon: HardHat, label: "Fabrication" },
+                ].map(({ Icon, label }, i) => (
+                  <motion.div
+                    key={label}
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.8 + i * 0.1, duration: 0.4 }}
+                    className="flex flex-col items-center gap-1 group"
+                  >
+                    <div className="w-10 h-10 rounded-lg bg-surface/80 border border-border flex items-center justify-center group-hover:border-accent group-hover:bg-accent/10 transition-colors">
+                      <Icon className="w-5 h-5 text-steel group-hover:text-accent transition-colors" />
+                    </div>
+                    <span className="text-[10px] text-steel-light hidden sm:block">{label}</span>
+                  </motion.div>
+                ))}
               </div>
             </motion.div>
+
+            {/* Right column - the rig SVG is rendered as background above, this keeps grid spacing */}
+            <div className="hidden lg:block" aria-hidden="true" />
           </div>
         </div>
       </section>
