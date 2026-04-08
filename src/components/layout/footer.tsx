@@ -58,7 +58,7 @@ export function Footer() {
               </a>
               <div className="flex items-center gap-2 text-sm text-steel">
                 <MapPin className="w-4 h-4 shrink-0" />
-                Houston, Texas, USA
+                Novaliches, Quezon City, Philippines
               </div>
             </div>
             {/* Social Links */}

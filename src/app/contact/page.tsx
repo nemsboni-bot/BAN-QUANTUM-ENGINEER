@@ -204,9 +204,9 @@ export default function ContactPage() {
                   <div>
                     <p className="text-sm font-medium text-foreground">Address</p>
                     <p className="text-sm">
-                      1234 Energy Corridor<br />
-                      Houston, TX 77079<br />
-                      United States
+                      Novaliches<br />
+                      Quezon City<br />
+                      Philippines
                     </p>
                   </div>
                 </div>
@@ -229,7 +229,7 @@ export default function ContactPage() {
               <div className="w-full h-64 bg-gradient-to-br from-surface-dark to-surface flex items-center justify-center">
                 <div className="text-center">
                   <MapPin className="w-10 h-10 text-accent/40 mx-auto mb-2" />
-                  <p className="text-sm text-steel">Houston, TX</p>
+                  <p className="text-sm text-steel">Novaliches, Quezon City</p>
                   <p className="text-xs text-steel-light mt-1">Interactive map integration ready</p>
                 </div>
               </div>
