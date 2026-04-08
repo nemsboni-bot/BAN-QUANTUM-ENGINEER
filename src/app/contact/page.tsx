@@ -190,13 +190,13 @@ export default function ContactPage() {
                   </div>
                 </a>
                 <a
-                  href="tel:+1234567890"
+                  href="tel:+639622696806"
                   className="flex items-start gap-3 text-steel hover:text-accent transition-colors"
                 >
                   <Phone className="w-5 h-5 mt-0.5 shrink-0 text-accent" />
                   <div>
                     <p className="text-sm font-medium text-foreground">Phone</p>
-                    <p className="text-sm">+1 (234) 567-890</p>
+                    <p className="text-sm">+63 962 269 6806</p>
                   </div>
                 </a>
                 <div className="flex items-start gap-3 text-steel">
@@ -242,11 +242,11 @@ export default function ContactPage() {
                 line is available 24/7.
               </p>
               <a
-                href="tel:+1234567899"
+                href="tel:+639622696806"
                 className="mt-3 inline-flex items-center gap-2 text-accent font-medium text-sm hover:text-accent-dark transition-colors"
               >
                 <Phone className="w-4 h-4" />
-                +1 (234) 567-899
+                +63 962 269 6806
               </a>
             </Card>
           </div>

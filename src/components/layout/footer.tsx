@@ -52,9 +52,9 @@ export function Footer() {
                 <Mail className="w-4 h-4" />
                 nemsboni@gmail.com
               </a>
-              <a href="tel:+1234567890" className="flex items-center gap-2 text-sm text-steel hover:text-accent transition-colors">
+              <a href="tel:+639622696806" className="flex items-center gap-2 text-sm text-steel hover:text-accent transition-colors">
                 <Phone className="w-4 h-4" />
-                +1 (234) 567-890
+                +63 962 269 6806
               </a>
               <div className="flex items-center gap-2 text-sm text-steel">
                 <MapPin className="w-4 h-4 shrink-0" />
