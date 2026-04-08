@@ -180,13 +180,13 @@ export default function ContactPage() {
               <h3 className="text-lg font-semibold text-foreground mb-4">Contact Information</h3>
               <div className="space-y-4">
                 <a
-                  href="mailto:info@banquantum.com"
+                  href="mailto:nemsboni@gmail.com"
                   className="flex items-start gap-3 text-steel hover:text-accent transition-colors"
                 >
                   <Mail className="w-5 h-5 mt-0.5 shrink-0 text-accent" />
                   <div>
                     <p className="text-sm font-medium text-foreground">Email</p>
-                    <p className="text-sm">info@banquantum.com</p>
+                    <p className="text-sm">nemsboni@gmail.com</p>
                   </div>
                 </a>
                 <a

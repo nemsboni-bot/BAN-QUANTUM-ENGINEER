@@ -48,9 +48,9 @@ export function Footer() {
               mechanical engineering, and fabrication services worldwide.
             </p>
             <div className="mt-4 space-y-2">
-              <a href="mailto:info@banquantum.com" className="flex items-center gap-2 text-sm text-steel hover:text-accent transition-colors">
+              <a href="mailto:nemsboni@gmail.com" className="flex items-center gap-2 text-sm text-steel hover:text-accent transition-colors">
                 <Mail className="w-4 h-4" />
-                info@banquantum.com
+                nemsboni@gmail.com
               </a>
               <a href="tel:+1234567890" className="flex items-center gap-2 text-sm text-steel hover:text-accent transition-colors">
                 <Phone className="w-4 h-4" />
