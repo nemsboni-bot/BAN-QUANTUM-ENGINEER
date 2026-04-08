@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { Mail, Phone, MapPin, Globe, ExternalLink, Share2, Link2 } from "lucide-react";
+import { Logo } from "@/components/ui/logo";
 
 const footerLinks = {
   services: [
@@ -34,10 +35,8 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Brand */}
           <div className="lg:col-span-1">
-            <Link href="/" className="flex items-center gap-2">
-              <div className="w-10 h-10 bg-gradient-to-br from-accent to-primary rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-lg">BQ</span>
-              </div>
+            <Link href="/" className="flex items-center gap-2.5">
+              <Logo size={40} />
               <div>
                 <span className="font-bold text-lg text-foreground">BAN Quantum</span>
                 <span className="block text-xs text-steel -mt-1">Engineering</span>

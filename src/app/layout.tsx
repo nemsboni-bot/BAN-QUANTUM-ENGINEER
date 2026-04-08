@@ -6,6 +6,9 @@ import { ScrollToTop } from "@/components/ui/scroll-to-top";
 import "./globals.css";
 
 export const metadata: Metadata = {
+  icons: {
+    icon: "/logo.svg",
+  },
   title: {
     default: "BAN Quantum Engineering | Engineering Solutions Beyond Boundaries",
     template: "%s | BAN Quantum Engineering",
