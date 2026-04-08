@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { useTheme } from "next-themes";
 import { motion, AnimatePresence } from "framer-motion";
@@ -28,7 +29,7 @@ const services = [
 const navLinks = [
   { name: "Home", href: "/" },
   { name: "About", href: "/about" },
-  { name: "Services", href: "/services/oil-and-gas", hasDropdown: true },
+  { name: "Services", href: "/services", hasDropdown: true },
   { name: "References", href: "/references" },
   { name: "Projects", href: "/projects" },
   { name: "Resources", href: "/resources" },
@@ -39,6 +40,12 @@ export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const { theme, setTheme } = useTheme();
+  const pathname = usePathname();
+
+  const isActive = (href: string) => {
+    if (href === "/") return pathname === "/";
+    return pathname.startsWith(href);
+  };
 
   return (
     <nav className="sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
@@ -67,7 +74,13 @@ export function Navbar() {
                   onMouseEnter={() => setServicesOpen(true)}
                   onMouseLeave={() => setServicesOpen(false)}
                 >
-                  <button className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-foreground hover:text-accent transition-colors rounded-lg hover:bg-surface">
+                  <button
+                    className={`flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-lg transition-colors ${
+                      isActive(link.href)
+                        ? "text-accent bg-accent/10"
+                        : "text-foreground hover:text-accent hover:bg-surface"
+                    }`}
+                  >
                     {link.name}
                     <ChevronDown className="w-4 h-4" />
                   </button>
@@ -84,7 +97,11 @@ export function Navbar() {
                           <Link
                             key={service.href}
                             href={service.href}
-                            className="flex items-center gap-3 px-4 py-3 text-sm text-foreground hover:bg-surface hover:text-accent transition-colors"
+                            className={`flex items-center gap-3 px-4 py-3 text-sm transition-colors ${
+                              pathname === service.href
+                                ? "text-accent bg-accent/5"
+                                : "text-foreground hover:bg-surface hover:text-accent"
+                            }`}
                           >
                             <service.icon className="w-4 h-4 text-accent" />
                             {service.name}
@@ -98,7 +115,11 @@ export function Navbar() {
                 <Link
                   key={link.name}
                   href={link.href}
-                  className="px-3 py-2 text-sm font-medium text-foreground hover:text-accent transition-colors rounded-lg hover:bg-surface"
+                  className={`px-3 py-2 text-sm font-medium rounded-lg transition-colors ${
+                    isActive(link.href)
+                      ? "text-accent bg-accent/10"
+                      : "text-foreground hover:text-accent hover:bg-surface"
+                  }`}
                 >
                   {link.name}
                 </Link>
@@ -148,7 +169,11 @@ export function Navbar() {
                   <div key={link.name}>
                     <button
                       onClick={() => setServicesOpen(!servicesOpen)}
-                      className="flex items-center justify-between w-full px-3 py-2 text-sm font-medium text-foreground rounded-lg hover:bg-surface"
+                      className={`flex items-center justify-between w-full px-3 py-2 text-sm font-medium rounded-lg ${
+                        isActive(link.href)
+                          ? "text-accent bg-accent/10"
+                          : "text-foreground hover:bg-surface"
+                      }`}
                     >
                       {link.name}
                       <ChevronDown
@@ -162,7 +187,11 @@ export function Navbar() {
                             key={service.href}
                             href={service.href}
                             onClick={() => setMobileOpen(false)}
-                            className="flex items-center gap-2 px-3 py-2 text-sm text-steel hover:text-accent transition-colors rounded-lg hover:bg-surface"
+                            className={`flex items-center gap-2 px-3 py-2 text-sm rounded-lg transition-colors ${
+                              pathname === service.href
+                                ? "text-accent bg-accent/5"
+                                : "text-steel hover:text-accent hover:bg-surface"
+                            }`}
                           >
                             <service.icon className="w-4 h-4" />
                             {service.name}
@@ -176,7 +205,11 @@ export function Navbar() {
                     key={link.name}
                     href={link.href}
                     onClick={() => setMobileOpen(false)}
-                    className="block px-3 py-2 text-sm font-medium text-foreground rounded-lg hover:bg-surface hover:text-accent transition-colors"
+                    className={`block px-3 py-2 text-sm font-medium rounded-lg transition-colors ${
+                      isActive(link.href)
+                        ? "text-accent bg-accent/10"
+                        : "text-foreground hover:bg-surface hover:text-accent"
+                    }`}
                   >
                     {link.name}
                   </Link>

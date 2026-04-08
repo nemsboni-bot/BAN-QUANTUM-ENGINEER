@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Mail, Phone, MapPin } from "lucide-react";
+import { Mail, Phone, MapPin, Globe, ExternalLink, Share2, Link2 } from "lucide-react";
 
 const footerLinks = {
   services: [
@@ -19,6 +19,13 @@ const footerLinks = {
     { name: "Contact", href: "/contact" },
   ],
 };
+
+const socialLinks = [
+  { name: "LinkedIn", icon: Link2, href: "#" },
+  { name: "Social", icon: Share2, href: "#" },
+  { name: "External", icon: ExternalLink, href: "#" },
+  { name: "Website", icon: Globe, href: "#" },
+];
 
 export function Footer() {
   return (
@@ -53,6 +60,19 @@ export function Footer() {
                 <MapPin className="w-4 h-4 shrink-0" />
                 Houston, Texas, USA
               </div>
+            </div>
+            {/* Social Links */}
+            <div className="mt-5 flex items-center gap-3">
+              {socialLinks.map((social) => (
+                <a
+                  key={social.name}
+                  href={social.href}
+                  aria-label={social.name}
+                  className="w-9 h-9 flex items-center justify-center rounded-lg bg-background border border-border text-steel hover:text-accent hover:border-accent transition-colors"
+                >
+                  <social.icon className="w-4 h-4" />
+                </a>
+              ))}
             </div>
           </div>
 
