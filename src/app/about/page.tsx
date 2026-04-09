@@ -122,7 +122,7 @@ export default function AboutPage() {
               <div className="mt-6 space-y-3 text-left">
                 <div className="flex items-center gap-3 text-sm text-steel">
                   <GraduationCap className="w-4 h-4 text-accent shrink-0" />
-                  Registered Master Electrician
+                  Registered Mechanical Engineer
                 </div>
                 <div className="flex items-center gap-3 text-sm text-steel">
                   <Wrench className="w-4 h-4 text-accent shrink-0" />
@@ -154,7 +154,7 @@ export default function AboutPage() {
               <p>
                 BAN Quantum Engineering was founded in <strong className="text-foreground">2021</strong> by{" "}
                 <strong className="text-foreground">Engr. Bonifacio A. Nemesio Jr., RME, PME</strong> — a
-                Registered Master Electrician and Professional Mechanical Engineer with extensive
+                Registered Mechanical Engineer and Professional Mechanical Engineer with extensive
                 hands-on experience in the oil &amp; gas, geothermal, and industrial sectors.
               </p>
               <p>
