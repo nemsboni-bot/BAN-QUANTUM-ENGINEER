@@ -5,11 +5,41 @@ interface IconProps extends React.SVGProps<SVGSVGElement> {
 }
 
 /**
- * Oil droplet icon — filled teardrop shape with a subtle highlight,
+ * Oil droplet icon — a bold, filled teardrop with a highlight shine,
  * representing crude oil for the Oil & Gas Drilling service.
  */
 export const OilDropletIcon = React.forwardRef<SVGSVGElement, IconProps>(
-  ({ size = 24, className, ...rest }, ref) => (
+  ({ size, className, ...rest }, ref) => (
+    <svg
+      ref={ref}
+      xmlns="http://www.w3.org/2000/svg"
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      stroke="currentColor"
+      strokeWidth={1.5}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      aria-hidden="true"
+      {...rest}
+    >
+      {/* Main teardrop body — filled */}
+      <path d="M12 2C12 2 5 10 5 15a7 7 0 0 0 14 0C19 10 12 2 12 2Z" />
+      {/* White highlight for shine (oil gloss) */}
+      <ellipse cx="9.5" cy="15" rx="1.3" ry="2.2" fill="#ffffff" fillOpacity="0.55" stroke="none" />
+    </svg>
+  )
+);
+OilDropletIcon.displayName = "OilDropletIcon";
+
+/**
+ * Steam well icon — a wellhead with a vertical casing pipe emitting
+ * three curling steam plumes, representing a geothermal well.
+ */
+export const SteamWellIcon = React.forwardRef<SVGSVGElement, IconProps>(
+  ({ size, className, ...rest }, ref) => (
     <svg
       ref={ref}
       xmlns="http://www.w3.org/2000/svg"
@@ -22,59 +52,29 @@ export const OilDropletIcon = React.forwardRef<SVGSVGElement, IconProps>(
       strokeLinecap="round"
       strokeLinejoin="round"
       className={className}
+      aria-hidden="true"
       {...rest}
     >
-      {/* Teardrop body — filled */}
-      <path
-        d="M12 2.5c0 0 6.5 7.2 6.5 12a6.5 6.5 0 1 1 -13 0c0 -4.8 6.5 -12 6.5 -12z"
-        fill="currentColor"
-        fillOpacity="0.9"
-      />
-      {/* Shine highlight */}
-      <path
-        d="M9.2 13.5c-.2 1.1 .1 2.2 .9 3"
-        stroke="#ffffff"
-        strokeOpacity="0.7"
-        strokeWidth={1.5}
-        fill="none"
-      />
-    </svg>
-  )
-);
-OilDropletIcon.displayName = "OilDropletIcon";
-
-/**
- * Steam well icon — a wellhead (horizontal base with a vertical riser)
- * emitting curling steam, representing a geothermal well.
- */
-export const SteamWellIcon = React.forwardRef<SVGSVGElement, IconProps>(
-  ({ size = 24, className, ...rest }, ref) => (
-    <svg
-      ref={ref}
-      xmlns="http://www.w3.org/2000/svg"
-      width={size}
-      height={size}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth={1.8}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className={className}
-      {...rest}
-    >
+      {/* Steam plume 1 (left) */}
+      <path d="M7 9c0-1 1-1 1-2s-1-1-1-2" />
+      {/* Steam plume 2 (center, taller) */}
+      <path d="M12 8c0-1.2 1-1.2 1-2.4S12 4.4 12 3" />
+      {/* Steam plume 3 (right) */}
+      <path d="M17 9c0-1 1-1 1-2s-1-1-1-2" />
+      {/* Top flange of the wellhead */}
+      <path d="M7 11h10" />
+      {/* Vertical casing / riser */}
+      <path d="M9 11v4" />
+      <path d="M15 11v4" />
+      {/* Base flange at ground level */}
+      <path d="M6 15h12" />
       {/* Ground line */}
       <path d="M3 20h18" />
-      {/* Wellhead base (flange on the ground) */}
-      <path d="M8 20v-2h8v2" />
-      {/* Vertical riser / casing */}
-      <path d="M10 18v-5h4v5" />
-      {/* Top flange of riser */}
-      <path d="M9 13h6" />
-      {/* Steam plumes rising from the well */}
-      <path d="M10 10c-1 -1 -1 -2 0 -3s1 -2 0 -3" />
-      <path d="M12 10c-1 -1 -1 -2 0 -3s1 -2 0 -3" />
-      <path d="M14 10c-1 -1 -1 -2 0 -3s1 -2 0 -3" />
+      {/* Ground hatch marks (soil) */}
+      <path d="M5 20v1" />
+      <path d="M9 20v1" />
+      <path d="M13 20v1" />
+      <path d="M17 20v1" />
     </svg>
   )
 );
