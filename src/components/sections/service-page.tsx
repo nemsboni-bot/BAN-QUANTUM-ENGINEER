@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, type LucideIcon } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Section, SectionHeader } from "@/components/ui/section";
 import { Card } from "@/components/ui/card";
 
@@ -15,7 +15,7 @@ interface ServiceSection {
 interface ServicePageProps {
   title: string;
   subtitle: string;
-  icon: LucideIcon;
+  icon: React.ComponentType<{ className?: string }>;
   overview: string;
   sections: ServiceSection[];
   relatedServices: { name: string; href: string }[];

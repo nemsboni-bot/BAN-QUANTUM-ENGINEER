@@ -11,17 +11,16 @@ import {
   Sun,
   Moon,
   ChevronDown,
-  Drill,
-  Flame,
   Cog,
   PenTool,
   HardHat,
 } from "lucide-react";
 import { Logo } from "@/components/ui/logo";
+import { OilDropletIcon, SteamWellIcon } from "@/components/ui/custom-icons";
 
 const services = [
-  { name: "Oil & Gas Drilling", href: "/services/oil-and-gas", icon: Drill },
-  { name: "Geothermal Drilling", href: "/services/geothermal", icon: Flame },
+  { name: "Oil & Gas Drilling", href: "/services/oil-and-gas", icon: OilDropletIcon },
+  { name: "Geothermal Drilling", href: "/services/geothermal", icon: SteamWellIcon },
   { name: "Mechanical Engineering", href: "/services/mechanical-engineering", icon: Cog },
   { name: "Mechanical Design", href: "/services/mechanical-design", icon: PenTool },
   { name: "Fabrication & Construction", href: "/services/fabrication", icon: HardHat },

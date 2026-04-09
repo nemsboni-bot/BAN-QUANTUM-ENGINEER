@@ -1,9 +1,9 @@
 "use client";
 
-import { Drill } from "lucide-react";
 import { ServicePage } from "@/components/sections/service-page";
 import { ApiFlangeReference } from "@/components/sections/api-flange-reference";
 import { Section, SectionHeader } from "@/components/ui/section";
+import { OilDropletIcon } from "@/components/ui/custom-icons";
 
 export default function OilAndGasPage() {
   return (
@@ -11,7 +11,7 @@ export default function OilAndGasPage() {
       <ServicePage
         title="Oil & Gas Drilling"
         subtitle="Comprehensive drilling engineering solutions for upstream oil and gas operations worldwide."
-        icon={Drill}
+        icon={OilDropletIcon}
         overview="BAN Quantum Engineering provides end-to-end drilling engineering services for onshore and offshore oil and gas operations. Our team of experienced drilling engineers delivers well designs optimized for safety, cost-efficiency, and operational performance, backed by deep expertise in all aspects of drilling operations from spud to completion."
         sections={[
           {

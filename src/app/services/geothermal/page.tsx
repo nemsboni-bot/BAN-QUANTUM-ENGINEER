@@ -1,14 +1,14 @@
 "use client";
 
-import { Flame } from "lucide-react";
 import { ServicePage } from "@/components/sections/service-page";
+import { SteamWellIcon } from "@/components/ui/custom-icons";
 
 export default function GeothermalPage() {
   return (
     <ServicePage
       title="Geothermal Drilling"
       subtitle="Specialized drilling engineering for sustainable geothermal energy development."
-      icon={Flame}
+      icon={SteamWellIcon}
       overview="Geothermal drilling presents unique engineering challenges that demand specialized expertise. BAN Quantum Engineering brings cross-disciplinary experience from both oil & gas and geothermal sectors to deliver well designs optimized for the extreme temperatures, corrosive environments, and hard rock formations characteristic of geothermal reservoirs. Our approach combines proven conventional drilling techniques with innovative solutions tailored for geothermal applications."
       sections={[
         {

@@ -3,8 +3,6 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import {
-  Drill,
-  Flame,
   Cog,
   PenTool,
   HardHat,
@@ -15,17 +13,18 @@ import {
 import { Section, SectionHeader } from "@/components/ui/section";
 import { Card } from "@/components/ui/card";
 import { DrillingRigSVG } from "@/components/ui/drilling-rig-svg";
+import { OilDropletIcon, SteamWellIcon } from "@/components/ui/custom-icons";
 import { projects } from "@/data/projects";
 
 const services = [
   {
-    icon: Drill,
+    icon: OilDropletIcon,
     title: "Oil & Gas Drilling",
     description: "Comprehensive drilling engineering services including well design, rig selection, and BOP systems management.",
     href: "/services/oil-and-gas",
   },
   {
-    icon: Flame,
+    icon: SteamWellIcon,
     title: "Geothermal Drilling",
     description: "Specialized geothermal well engineering for sustainable energy extraction from subsurface reservoirs.",
     href: "/services/geothermal",
@@ -133,8 +132,8 @@ export default function HomePage() {
               {/* Quick service icons below CTA */}
               <div className="mt-10 flex items-center gap-4">
                 {[
-                  { Icon: Drill, label: "Drilling" },
-                  { Icon: Flame, label: "Geothermal" },
+                  { Icon: OilDropletIcon, label: "Oil & Gas" },
+                  { Icon: SteamWellIcon, label: "Geothermal" },
                   { Icon: Cog, label: "Mechanical" },
                   { Icon: PenTool, label: "Design" },
                   { Icon: HardHat, label: "Fabrication" },
