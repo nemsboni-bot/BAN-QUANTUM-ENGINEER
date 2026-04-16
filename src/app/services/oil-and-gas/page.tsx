@@ -1,7 +1,7 @@
 "use client";
 
 import { ServicePage } from "@/components/sections/service-page";
-import { ApiFlangeReference } from "@/components/sections/api-flange-reference";
+import { TubularGoodsReference } from "@/components/sections/tubular-goods-reference";
 import { Section, SectionHeader } from "@/components/ui/section";
 import { OilDropletIcon } from "@/components/ui/custom-icons";
 
@@ -91,13 +91,13 @@ export default function OilAndGasPage() {
         ]}
       />
 
-      {/* API Flange Reference Section */}
+      {/* API Tubular Goods Reference Section */}
       <Section className="bg-surface">
         <SectionHeader
-          title="API Flange Dimension Reference"
-          subtitle="Interactive slide rule for API 6A flange dimensions. Select a nominal bore size and working pressure to view complete flange specifications."
+          title="API Tubular Goods Reference"
+          subtitle="Interactive reference for API 5CT casing & tubing and API 5DP drill pipe specifications. Select a product type, OD size, and weight to view dimensions and grade properties."
         />
-        <ApiFlangeReference />
+        <TubularGoodsReference />
       </Section>
     </>
   );
