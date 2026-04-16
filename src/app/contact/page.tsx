@@ -137,7 +137,6 @@ export default function ContactPage() {
                       className="w-full px-4 py-3 bg-surface border border-border rounded-lg text-foreground focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
                     >
                       <option value="">Select a subject</option>
-                      <option value="oil-gas">Oil & Gas Drilling</option>
                       <option value="geothermal">Geothermal Drilling</option>
                       <option value="mechanical-eng">Mechanical Engineering</option>
                       <option value="mechanical-design">Mechanical Design</option>

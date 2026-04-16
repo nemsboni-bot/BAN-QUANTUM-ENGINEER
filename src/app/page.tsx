@@ -13,16 +13,10 @@ import {
 import { Section, SectionHeader } from "@/components/ui/section";
 import { Card } from "@/components/ui/card";
 import { DrillingRigSVG } from "@/components/ui/drilling-rig-svg";
-import { OilDropletIcon, SteamWellIcon } from "@/components/ui/custom-icons";
+import { SteamWellIcon } from "@/components/ui/custom-icons";
 import { projects } from "@/data/projects";
 
 const services = [
-  {
-    icon: OilDropletIcon,
-    title: "Oil & Gas Drilling",
-    description: "Comprehensive drilling engineering services including well design, rig selection, and BOP systems management.",
-    href: "/services/oil-and-gas",
-  },
   {
     icon: SteamWellIcon,
     title: "Geothermal Drilling",
@@ -115,7 +109,7 @@ export default function HomePage() {
               </p>
               <div className="mt-8 flex flex-wrap gap-4">
                 <Link
-                  href="/services/oil-and-gas"
+                  href="/services/geothermal"
                   className="inline-flex items-center gap-2 px-6 py-3 bg-accent text-white font-medium rounded-lg hover:bg-accent-dark transition-colors"
                 >
                   Explore Services
@@ -132,7 +126,6 @@ export default function HomePage() {
               {/* Quick service icons below CTA */}
               <div className="mt-10 flex items-center gap-4">
                 {[
-                  { Icon: OilDropletIcon, label: "Oil & Gas" },
                   { Icon: SteamWellIcon, label: "Geothermal" },
                   { Icon: Cog, label: "Mechanical" },
                   { Icon: PenTool, label: "Design" },

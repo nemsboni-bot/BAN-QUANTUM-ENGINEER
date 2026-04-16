@@ -84,7 +84,7 @@ export default function MechanicalEngineeringPage() {
       relatedServices={[
         { name: "Mechanical Design", href: "/services/mechanical-design" },
         { name: "Fabrication & Construction", href: "/services/fabrication" },
-        { name: "Oil & Gas Drilling", href: "/services/oil-and-gas" },
+        { name: "Geothermal Drilling", href: "/services/geothermal" },
       ]}
     />
   );

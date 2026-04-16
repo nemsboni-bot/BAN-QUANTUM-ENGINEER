@@ -6,7 +6,6 @@ import { Logo } from "@/components/ui/logo";
 
 const footerLinks = {
   services: [
-    { name: "Oil & Gas Drilling", href: "/services/oil-and-gas" },
     { name: "Geothermal Drilling", href: "/services/geothermal" },
     { name: "Mechanical Engineering", href: "/services/mechanical-engineering" },
     { name: "Mechanical Design", href: "/services/mechanical-design" },

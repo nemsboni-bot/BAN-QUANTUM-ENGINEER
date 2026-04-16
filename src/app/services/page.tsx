@@ -5,17 +5,9 @@ import { motion } from "framer-motion";
 import { ArrowRight, Cog, PenTool, HardHat } from "lucide-react";
 import { Section, SectionHeader } from "@/components/ui/section";
 import { Card } from "@/components/ui/card";
-import { OilDropletIcon, SteamWellIcon } from "@/components/ui/custom-icons";
+import { SteamWellIcon } from "@/components/ui/custom-icons";
 
 const services = [
-  {
-    icon: OilDropletIcon,
-    title: "Oil & Gas Drilling",
-    description:
-      "Comprehensive drilling engineering services including well design, rig selection, mud system optimization, and BOP management for onshore and offshore operations.",
-    href: "/services/oil-and-gas",
-    highlights: ["Well Design", "BOP Systems", "Drilling Fluids", "Well Control"],
-  },
   {
     icon: SteamWellIcon,
     title: "Geothermal Drilling",

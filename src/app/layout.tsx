@@ -14,10 +14,9 @@ export const metadata: Metadata = {
     template: "%s | BAN Quantum Engineering",
   },
   description:
-    "BAN Quantum Engineering delivers expert solutions in oil & gas drilling, geothermal energy, mechanical engineering, design, fabrication, and construction.",
+    "BAN Quantum Engineering delivers expert solutions in geothermal drilling, mechanical engineering, design, fabrication, and construction.",
   keywords: [
     "engineering",
-    "oil and gas drilling",
     "geothermal drilling",
     "mechanical engineering",
     "mechanical design",
@@ -31,7 +30,7 @@ export const metadata: Metadata = {
     siteName: "BAN Quantum Engineering",
     title: "BAN Quantum Engineering | Engineering Solutions Beyond Boundaries",
     description:
-      "Expert solutions in oil & gas drilling, geothermal energy, mechanical engineering, design, fabrication, and construction.",
+      "Expert solutions in geothermal drilling, mechanical engineering, design, fabrication, and construction.",
   },
   twitter: {
     card: "summary_large_image",

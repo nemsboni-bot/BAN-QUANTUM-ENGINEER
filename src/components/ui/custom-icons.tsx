@@ -5,36 +5,6 @@ interface IconProps extends React.SVGProps<SVGSVGElement> {
 }
 
 /**
- * Oil droplet icon — a bold, filled teardrop with a highlight shine,
- * representing crude oil for the Oil & Gas Drilling service.
- */
-export const OilDropletIcon = React.forwardRef<SVGSVGElement, IconProps>(
-  ({ size, className, ...rest }, ref) => (
-    <svg
-      ref={ref}
-      xmlns="http://www.w3.org/2000/svg"
-      width={size}
-      height={size}
-      viewBox="0 0 24 24"
-      fill="currentColor"
-      stroke="currentColor"
-      strokeWidth={1.5}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className={className}
-      aria-hidden="true"
-      {...rest}
-    >
-      {/* Main teardrop body — filled */}
-      <path d="M12 2C12 2 5 10 5 15a7 7 0 0 0 14 0C19 10 12 2 12 2Z" />
-      {/* White highlight for shine (oil gloss) */}
-      <ellipse cx="9.5" cy="15" rx="1.3" ry="2.2" fill="#ffffff" fillOpacity="0.55" stroke="none" />
-    </svg>
-  )
-);
-OilDropletIcon.displayName = "OilDropletIcon";
-
-/**
  * Steam well icon — a wellhead with a vertical casing pipe emitting
  * three curling steam plumes, representing a geothermal well.
  */

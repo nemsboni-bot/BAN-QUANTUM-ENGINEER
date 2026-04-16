@@ -85,9 +85,9 @@ export default function GeothermalPage() {
         },
       ]}
       relatedServices={[
-        { name: "Oil & Gas Drilling", href: "/services/oil-and-gas" },
         { name: "Mechanical Engineering", href: "/services/mechanical-engineering" },
         { name: "Mechanical Design", href: "/services/mechanical-design" },
+        { name: "Fabrication & Construction", href: "/services/fabrication" },
       ]}
     />
 
