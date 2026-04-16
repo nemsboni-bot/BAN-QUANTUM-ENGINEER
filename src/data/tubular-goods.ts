@@ -227,6 +227,56 @@ export const drillPipeSizes: DrillPipeData[] = [
 ];
 
 // ----------------------------------------------------------------------
+// API 7-1 Drill Collars
+// ----------------------------------------------------------------------
+
+export interface DrillCollarData {
+  od: number;           // OD (in)
+  weight: number;       // nominal weight (lb/ft)
+  wall: number;         // wall thickness (in)
+  id: number;           // bore / ID (in)
+  connection: string;   // API connection type
+  material: string;     // material class
+}
+
+export const drillCollarSizes: DrillCollarData[] = [
+  // 3-1/8"
+  { od: 3.125, weight: 21.9,  wall: 0.938, id: 1.250, connection: "NC26 (2-3/8 IF)",    material: "AISI 4145H Mod" },
+  // 3-1/2"
+  { od: 3.500, weight: 26.7,  wall: 1.000, id: 1.500, connection: "NC26 (2-3/8 IF)",    material: "AISI 4145H Mod" },
+  // 4-1/8"
+  { od: 4.125, weight: 34.7,  wall: 1.063, id: 2.000, connection: "NC31 (2-7/8 IF)",    material: "AISI 4145H Mod" },
+  // 4-3/4"
+  { od: 4.750, weight: 46.7,  wall: 1.250, id: 2.250, connection: "NC38 (3-1/2 IF)",    material: "AISI 4145H Mod" },
+  // 5"
+  { od: 5.000, weight: 53.2,  wall: 1.375, id: 2.250, connection: "NC38 (3-1/2 IF)",    material: "AISI 4145H Mod" },
+  // 6"
+  { od: 6.000, weight: 82.6,  wall: 1.875, id: 2.250, connection: "NC46 (4 IF)",        material: "AISI 4145H Mod" },
+  // 6-1/4"
+  { od: 6.250, weight: 83.3,  wall: 1.719, id: 2.813, connection: "NC46 (4 IF)",        material: "AISI 4145H Mod" },
+  // 6-1/2"
+  { od: 6.500, weight: 91.7,  wall: 1.844, id: 2.813, connection: "NC46 (4 IF)",        material: "AISI 4145H Mod" },
+  // 6-3/4"
+  { od: 6.750, weight: 100.5, wall: 1.969, id: 2.813, connection: "NC50 (4-1/2 IF)",    material: "AISI 4145H Mod" },
+  // 7"
+  { od: 7.000, weight: 109.7, wall: 2.094, id: 2.813, connection: "NC50 (4-1/2 IF)",    material: "AISI 4145H Mod" },
+  // 7-1/4"
+  { od: 7.250, weight: 119.2, wall: 2.219, id: 2.813, connection: "NC50 (4-1/2 IF)",    material: "AISI 4145H Mod" },
+  // 8"
+  { od: 8.000, weight: 147.0, wall: 2.500, id: 3.000, connection: "NC56 (5 IF)",        material: "AISI 4145H Mod" },
+  // 9"
+  { od: 9.000, weight: 192.3, wall: 3.000, id: 3.000, connection: "NC61 (5-1/2 IF)",    material: "AISI 4145H Mod" },
+  // 9-1/2"
+  { od: 9.500, weight: 217.0, wall: 3.250, id: 3.000, connection: "NC70 (6-5/8 REG)",   material: "AISI 4145H Mod" },
+  // 10"
+  { od: 10.000, weight: 243.0, wall: 3.500, id: 3.000, connection: "NC70 (6-5/8 REG)",  material: "AISI 4145H Mod" },
+  // 11"
+  { od: 11.000, weight: 299.1, wall: 4.000, id: 3.000, connection: "NC77 (7-5/8 REG)",  material: "AISI 4145H Mod" },
+  // 12"
+  { od: 12.000, weight: 360.5, wall: 4.500, id: 3.000, connection: "7-5/8 REG",         material: "AISI 4145H Mod" },
+];
+
+// ----------------------------------------------------------------------
 // API 5CT Grade strength properties (PSI)
 // ----------------------------------------------------------------------
 

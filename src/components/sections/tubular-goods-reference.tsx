@@ -7,19 +7,22 @@ import {
   casingSizes,
   tubingSizes,
   drillPipeSizes,
+  drillCollarSizes,
   gradeProperties,
   drillPipeGradeProperties,
   type CasingData,
   type TubingData,
   type DrillPipeData,
+  type DrillCollarData,
 } from "@/data/tubular-goods";
 
-type Product = "casing" | "tubing" | "drillpipe";
+type Product = "casing" | "tubing" | "drillpipe" | "drillcollar";
 
 const productTabs: { id: Product; label: string; spec: string; icon: string }[] = [
-  { id: "casing",    label: "Casing",     spec: "API 5CT",       icon: "OD 4-1/2\" – 20\""   },
-  { id: "tubing",    label: "Tubing",     spec: "API 5CT",       icon: "OD 1.050\" – 4-1/2\"" },
-  { id: "drillpipe", label: "Drill Pipe", spec: "API 5DP / 7-1", icon: "OD 2-3/8\" – 6-5/8\"" },
+  { id: "casing",      label: "Casing",       spec: "API 5CT",       icon: "OD 4-1/2\" – 20\""   },
+  { id: "tubing",      label: "Tubing",       spec: "API 5CT",       icon: "OD 1.050\" – 4-1/2\"" },
+  { id: "drillpipe",   label: "Drill Pipe",   spec: "API 5DP / 7-1", icon: "OD 2-3/8\" – 6-5/8\"" },
+  { id: "drillcollar", label: "Drill Collar", spec: "API 7-1",       icon: "OD 3-1/8\" – 12\""   },
 ];
 
 // ---------- Size formatting helpers ----------
@@ -49,6 +52,20 @@ function formatOd(od: number): string {
     "16.000": '16"',
     "18.625": '18-5/8"',
     "20.000": '20"',
+    // Drill collar sizes
+    "3.125":  '3-1/8"',
+    "4.125":  '4-1/8"',
+    "4.750":  '4-3/4"',
+    "6.250":  '6-1/4"',
+    "6.500":  '6-1/2"',
+    "6.750":  '6-3/4"',
+    "7.250":  '7-1/4"',
+    "8.000":  '8"',
+    "9.000":  '9"',
+    "9.500":  '9-1/2"',
+    "10.000": '10"',
+    "11.000": '11"',
+    "12.000": '12"',
   };
   return fractionMap[od.toFixed(3)] ?? `${od}"`;
 }
@@ -174,10 +191,17 @@ export function TubularGoodsReference() {
         specTitle: "API 5CT Tubing",
       };
     }
+    if (product === "drillpipe") {
+      return {
+        rows: drillPipeSizes,
+        uniqueOds: Array.from(new Set(drillPipeSizes.map((c) => c.od))),
+        specTitle: "API 5DP / 7-1 Drill Pipe",
+      };
+    }
     return {
-      rows: drillPipeSizes,
-      uniqueOds: Array.from(new Set(drillPipeSizes.map((c) => c.od))),
-      specTitle: "API 5DP / 7-1 Drill Pipe",
+      rows: drillCollarSizes,
+      uniqueOds: Array.from(new Set(drillCollarSizes.map((c) => c.od))),
+      specTitle: "API 7-1 Drill Collar",
     };
   }, [product]);
 
@@ -195,7 +219,9 @@ export function TubularGoodsReference() {
         ? casingSizes[0].od
         : p === "tubing"
         ? tubingSizes[0].od
-        : drillPipeSizes[0].od;
+        : p === "drillpipe"
+        ? drillPipeSizes[0].od
+        : drillCollarSizes[0].od;
     setSelectedOd(firstOd);
     setSelectedIdx(0);
   };
@@ -205,11 +231,11 @@ export function TubularGoodsReference() {
     setSelectedIdx(0);
   };
 
-  // Grade properties for the selected row
-  const currentGrades = selectedRow ? selectedRow.grades : [];
+  // Grade properties for the selected row (drill collars use material, not grades)
+  const currentGrades = selectedRow && "grades" in selectedRow ? (selectedRow as CasingData | TubingData | DrillPipeData).grades : [];
   const gradeTable =
     product === "drillpipe" ? drillPipeGradeProperties : gradeProperties;
-  const gradeDetails = gradeTable.filter((g) => currentGrades.includes(g.grade));
+  const gradeDetails = product !== "drillcollar" ? gradeTable.filter((g) => currentGrades.includes(g.grade)) : [];
 
   return (
     <div className="bg-surface border border-border rounded-2xl overflow-hidden">
@@ -221,7 +247,7 @@ export function TubularGoodsReference() {
           </div>
           <div>
             <h3 className="text-lg font-bold text-foreground">API Tubular Goods Reference</h3>
-            <p className="text-xs text-steel">Casing, tubing and drill pipe per API 5CT / 5DP</p>
+            <p className="text-xs text-steel">Casing, tubing, drill pipe &amp; drill collars per API 5CT / 5DP / 7-1</p>
           </div>
         </div>
       </div>
@@ -334,20 +360,29 @@ export function TubularGoodsReference() {
                 <div className="space-y-2">
                   {[
                     { label: "Outside Diameter (OD)", value: `${selectedRow.od.toFixed(3)}"` },
-                    { label: "Inside Diameter (ID)",  value: `${selectedRow.id.toFixed(3)}"` },
+                    { label: product === "drillcollar" ? "Bore (ID)" : "Inside Diameter (ID)", value: `${selectedRow.id.toFixed(3)}"` },
                     { label: "Wall Thickness (t)",    value: `${selectedRow.wall.toFixed(3)}"` },
-                    { label: "Drift Diameter",        value: `${"drift" in selectedRow ? (selectedRow as CasingData | TubingData).drift.toFixed(3) : "—"}"` },
+                    ...("drift" in selectedRow
+                      ? [{ label: "Drift Diameter", value: `${(selectedRow as CasingData | TubingData).drift.toFixed(3)}"` }]
+                      : []),
                     { label: "Nominal Weight",        value: `${selectedRow.weight.toFixed(2)} lb/ft` },
-                    {
-                      label: "End Finish",
-                      value:
-                        product === "tubing"
-                          ? (selectedRow as TubingData).end
-                          : product === "casing"
-                          ? "BTC / LTC / STC"
-                          : "Tool Joint (NC/REG)",
-                    },
-                    { label: "Available Grades",      value: currentGrades.join(", ") },
+                    ...(product === "drillcollar"
+                      ? [
+                          { label: "Connection", value: (selectedRow as DrillCollarData).connection },
+                          { label: "Material",   value: (selectedRow as DrillCollarData).material },
+                        ]
+                      : [
+                          {
+                            label: "End Finish",
+                            value:
+                              product === "tubing"
+                                ? (selectedRow as TubingData).end
+                                : product === "casing"
+                                ? "BTC / LTC / STC"
+                                : "Tool Joint (NC/REG)",
+                          },
+                          { label: "Available Grades", value: currentGrades.join(", ") },
+                        ]),
                   ].map((dim, i) => (
                     <motion.div
                       key={dim.label}
@@ -403,12 +438,14 @@ export function TubularGoodsReference() {
                 <Info className="w-4 h-4 text-accent mt-0.5 shrink-0" />
                 <p className="text-xs text-steel leading-relaxed">
                   <span className="font-semibold text-foreground">Reference:</span> Dimensions
-                  per API Specification 5CT (Casing &amp; Tubing), API 5DP / 7-1 (Drill Pipe),
-                  and API 5B (Thread Gauging). Drift diameter calculated per API 5CT Table C.4.
-                  Grade mechanical properties per API 5CT Table C.5. Sour service grades
-                  (L-80, C-90, T-95, C-110) comply with NACE MR0175 / ISO 15156. Values shown
-                  are typical — always verify against the applicable edition and the mill
-                  certificate for the specific material lot.
+                  per API Specification 5CT (Casing &amp; Tubing), API 5DP / 7-1 (Drill Pipe
+                  &amp; Drill Collars), and API 5B (Thread Gauging). Drift diameter calculated
+                  per API 5CT Table C.4. Grade mechanical properties per API 5CT Table C.5.
+                  Drill collar weights calculated at 489.5 lb/ft&sup3; steel density. Drill collar
+                  connections per API Spec 7-2. Sour service grades (L-80, C-90, T-95, C-110)
+                  comply with NACE MR0175 / ISO 15156. Values shown are typical — always verify
+                  against the applicable edition and the mill certificate for the specific
+                  material lot.
                 </p>
               </div>
 
@@ -416,8 +453,8 @@ export function TubularGoodsReference() {
                 <BookOpen className="w-4 h-4 text-primary-light mt-0.5 shrink-0" />
                 <p className="text-xs text-steel leading-relaxed">
                   <span className="font-semibold text-foreground">Applicable Standards:</span>{" "}
-                  API 5CT · API 5B · API 5L · API 5DP · API Spec 7-1 · API RP 5C1 ·
-                  API Bulletin 5C3 (formulas) · NACE MR0175 / ISO 15156
+                  API 5CT · API 5B · API 5L · API 5DP · API Spec 7-1 · API Spec 7-2 ·
+                  API RP 5C1 · API Bulletin 5C3 (formulas) · NACE MR0175 / ISO 15156
                 </p>
               </div>
             </motion.div>

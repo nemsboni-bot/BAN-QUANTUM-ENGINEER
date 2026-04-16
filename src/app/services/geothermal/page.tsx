@@ -1,10 +1,13 @@
 "use client";
 
 import { ServicePage } from "@/components/sections/service-page";
+import { TubularGoodsReference } from "@/components/sections/tubular-goods-reference";
+import { Section, SectionHeader } from "@/components/ui/section";
 import { SteamWellIcon } from "@/components/ui/custom-icons";
 
 export default function GeothermalPage() {
   return (
+    <>
     <ServicePage
       title="Geothermal Drilling"
       subtitle="Specialized drilling engineering for sustainable geothermal energy development."
@@ -87,5 +90,15 @@ export default function GeothermalPage() {
         { name: "Mechanical Design", href: "/services/mechanical-design" },
       ]}
     />
+
+      {/* API Tubular Goods Reference Section */}
+      <Section className="bg-surface">
+        <SectionHeader
+          title="API Tubular Goods Reference"
+          subtitle="Interactive reference for API 5CT casing & tubing, API 5DP drill pipe, and API 7-1 drill collar specifications. Select a product type, OD size, and weight to view dimensions and properties."
+        />
+        <TubularGoodsReference />
+      </Section>
+    </>
   );
 }

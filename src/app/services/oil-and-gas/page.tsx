@@ -1,14 +1,11 @@
 "use client";
 
 import { ServicePage } from "@/components/sections/service-page";
-import { TubularGoodsReference } from "@/components/sections/tubular-goods-reference";
-import { Section, SectionHeader } from "@/components/ui/section";
 import { OilDropletIcon } from "@/components/ui/custom-icons";
 
 export default function OilAndGasPage() {
   return (
-    <>
-      <ServicePage
+    <ServicePage
         title="Oil & Gas Drilling"
         subtitle="Comprehensive drilling engineering solutions for upstream oil and gas operations worldwide."
         icon={OilDropletIcon}
@@ -89,16 +86,6 @@ export default function OilAndGasPage() {
           { name: "Mechanical Engineering", href: "/services/mechanical-engineering" },
           { name: "Fabrication & Construction", href: "/services/fabrication" },
         ]}
-      />
-
-      {/* API Tubular Goods Reference Section */}
-      <Section className="bg-surface">
-        <SectionHeader
-          title="API Tubular Goods Reference"
-          subtitle="Interactive reference for API 5CT casing & tubing and API 5DP drill pipe specifications. Select a product type, OD size, and weight to view dimensions and grade properties."
-        />
-        <TubularGoodsReference />
-      </Section>
-    </>
+    />
   );
 }
