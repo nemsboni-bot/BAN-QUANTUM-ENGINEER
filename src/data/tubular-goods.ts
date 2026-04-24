@@ -5,10 +5,14 @@
     - API Specification 5CT (Casing and Tubing)
     - API Specification 5B  (Threading, Gauging of Casing/Tubing Threads)
     - API Specification 5L  (Line Pipe)
-    - API Specification 5DP / API 7-1 (Drill Pipe)
+    - API Specification 5DP / API 7-1 (Drill Pipe & Drill Collars)
+    - API Spec 7-2 (Rotary Shouldered Thread Connections)
+    - API RP 7G / API RP 7G-2 (Recommended Practice for Drill Stem Design)
 
   NOTES:
-    • All dimensions are in inches, weights in lb/ft.
+    • All dimensions are in inches, weights in lb/ft, torques in ft-lbs.
+    • Make-up torques per API RP 7G with API modified thread compound
+      (friction factor 1.0). Min = 80% of optimum; Max = optimum + 10%.
     • Values are typical reference dimensions — for fabrication or
       procurement always verify against the current edition of the
       applicable API specification and the mill certificate.
@@ -191,39 +195,42 @@ export interface DrillPipeData {
   weight: number;       // nominal weight (lb/ft)
   wall: number;         // wall thickness (in)
   id: number;           // ID (in)
+  connection: string;   // tool joint connection type
+  torqueMin: number;    // min make-up torque (ft-lbs) per API RP 7G
+  torqueMax: number;    // max make-up torque (ft-lbs) per API RP 7G
   grades: string[];     // available grades
 }
 
 export const drillPipeSizes: DrillPipeData[] = [
   // 2-3/8"
-  { od: 2.375, weight: 4.85,  wall: 0.190, id: 1.995, grades: ["E-75", "X-95", "G-105", "S-135"] },
-  { od: 2.375, weight: 6.65,  wall: 0.280, id: 1.815, grades: ["E-75", "X-95", "G-105", "S-135"] },
+  { od: 2.375, weight: 4.85,  wall: 0.190, id: 1.995, connection: "NC26 (2-3/8 IF)", torqueMin: 4200,  torqueMax: 5700,  grades: ["E-75", "X-95", "G-105", "S-135"] },
+  { od: 2.375, weight: 6.65,  wall: 0.280, id: 1.815, connection: "NC26 (2-3/8 IF)", torqueMin: 4600,  torqueMax: 6400,  grades: ["E-75", "X-95", "G-105", "S-135"] },
   // 2-7/8"
-  { od: 2.875, weight: 6.85,  wall: 0.217, id: 2.441, grades: ["E-75", "X-95", "G-105", "S-135"] },
-  { od: 2.875, weight: 10.40, wall: 0.362, id: 2.151, grades: ["E-75", "X-95", "G-105", "S-135"] },
+  { od: 2.875, weight: 6.85,  wall: 0.217, id: 2.441, connection: "NC31 (2-7/8 IF)", torqueMin: 6200,  torqueMax: 8600,  grades: ["E-75", "X-95", "G-105", "S-135"] },
+  { od: 2.875, weight: 10.40, wall: 0.362, id: 2.151, connection: "NC31 (2-7/8 IF)", torqueMin: 7400,  torqueMax: 10300, grades: ["E-75", "X-95", "G-105", "S-135"] },
   // 3-1/2"
-  { od: 3.500, weight: 9.50,  wall: 0.254, id: 2.992, grades: ["E-75", "X-95", "G-105", "S-135"] },
-  { od: 3.500, weight: 13.30, wall: 0.368, id: 2.764, grades: ["E-75", "X-95", "G-105", "S-135"] },
-  { od: 3.500, weight: 15.50, wall: 0.449, id: 2.602, grades: ["E-75", "X-95", "G-105", "S-135"] },
+  { od: 3.500, weight: 9.50,  wall: 0.254, id: 2.992, connection: "NC38 (3-1/2 IF)", torqueMin: 11500, torqueMax: 15900, grades: ["E-75", "X-95", "G-105", "S-135"] },
+  { od: 3.500, weight: 13.30, wall: 0.368, id: 2.764, connection: "NC38 (3-1/2 IF)", torqueMin: 13600, torqueMax: 18800, grades: ["E-75", "X-95", "G-105", "S-135"] },
+  { od: 3.500, weight: 15.50, wall: 0.449, id: 2.602, connection: "NC38 (3-1/2 IF)", torqueMin: 16300, torqueMax: 22600, grades: ["E-75", "X-95", "G-105", "S-135"] },
   // 4"
-  { od: 4.000, weight: 11.85, wall: 0.262, id: 3.476, grades: ["E-75", "X-95", "G-105", "S-135"] },
-  { od: 4.000, weight: 14.00, wall: 0.330, id: 3.340, grades: ["E-75", "X-95", "G-105", "S-135"] },
+  { od: 4.000, weight: 11.85, wall: 0.262, id: 3.476, connection: "NC40 (4 FH)",     torqueMin: 13800, torqueMax: 19100, grades: ["E-75", "X-95", "G-105", "S-135"] },
+  { od: 4.000, weight: 14.00, wall: 0.330, id: 3.340, connection: "NC40 (4 FH)",     torqueMin: 16100, torqueMax: 22300, grades: ["E-75", "X-95", "G-105", "S-135"] },
   // 4-1/2"
-  { od: 4.500, weight: 13.75, wall: 0.271, id: 3.958, grades: ["E-75", "X-95", "G-105", "S-135"] },
-  { od: 4.500, weight: 16.60, wall: 0.337, id: 3.826, grades: ["E-75", "X-95", "G-105", "S-135", "Z-140", "V-150"] },
-  { od: 4.500, weight: 20.00, wall: 0.430, id: 3.640, grades: ["E-75", "X-95", "G-105", "S-135", "Z-140", "V-150"] },
+  { od: 4.500, weight: 13.75, wall: 0.271, id: 3.958, connection: "NC46 (4 IF)",     torqueMin: 20100, torqueMax: 27900, grades: ["E-75", "X-95", "G-105", "S-135"] },
+  { od: 4.500, weight: 16.60, wall: 0.337, id: 3.826, connection: "NC46 (4 IF)",     torqueMin: 23900, torqueMax: 33100, grades: ["E-75", "X-95", "G-105", "S-135", "Z-140", "V-150"] },
+  { od: 4.500, weight: 20.00, wall: 0.430, id: 3.640, connection: "NC46 (4 IF)",     torqueMin: 27100, torqueMax: 37600, grades: ["E-75", "X-95", "G-105", "S-135", "Z-140", "V-150"] },
   // 5"
-  { od: 5.000, weight: 19.50, wall: 0.362, id: 4.276, grades: ["E-75", "X-95", "G-105", "S-135", "Z-140", "V-150"] },
-  { od: 5.000, weight: 25.60, wall: 0.500, id: 4.000, grades: ["E-75", "X-95", "G-105", "S-135", "Z-140", "V-150"] },
+  { od: 5.000, weight: 19.50, wall: 0.362, id: 4.276, connection: "NC50 (4-1/2 IF)", torqueMin: 28400, torqueMax: 39400, grades: ["E-75", "X-95", "G-105", "S-135", "Z-140", "V-150"] },
+  { od: 5.000, weight: 25.60, wall: 0.500, id: 4.000, connection: "NC50 (4-1/2 IF)", torqueMin: 35100, torqueMax: 48700, grades: ["E-75", "X-95", "G-105", "S-135", "Z-140", "V-150"] },
   // 5-1/2"
-  { od: 5.500, weight: 21.90, wall: 0.361, id: 4.778, grades: ["E-75", "X-95", "G-105", "S-135", "Z-140", "V-150"] },
-  { od: 5.500, weight: 24.70, wall: 0.415, id: 4.670, grades: ["E-75", "X-95", "G-105", "S-135", "Z-140", "V-150"] },
+  { od: 5.500, weight: 21.90, wall: 0.361, id: 4.778, connection: "5-1/2 FH",        torqueMin: 31800, torqueMax: 44100, grades: ["E-75", "X-95", "G-105", "S-135", "Z-140", "V-150"] },
+  { od: 5.500, weight: 24.70, wall: 0.415, id: 4.670, connection: "5-1/2 FH",        torqueMin: 36100, torqueMax: 50100, grades: ["E-75", "X-95", "G-105", "S-135", "Z-140", "V-150"] },
   // 5-7/8"
-  { od: 5.875, weight: 23.40, wall: 0.361, id: 5.153, grades: ["E-75", "X-95", "G-105", "S-135", "Z-140", "V-150"] },
-  { od: 5.875, weight: 26.30, wall: 0.415, id: 5.045, grades: ["E-75", "X-95", "G-105", "S-135", "Z-140", "V-150"] },
+  { od: 5.875, weight: 23.40, wall: 0.361, id: 5.153, connection: "5-1/2 FH",        torqueMin: 33600, torqueMax: 46600, grades: ["E-75", "X-95", "G-105", "S-135", "Z-140", "V-150"] },
+  { od: 5.875, weight: 26.30, wall: 0.415, id: 5.045, connection: "5-1/2 FH",        torqueMin: 38600, torqueMax: 53500, grades: ["E-75", "X-95", "G-105", "S-135", "Z-140", "V-150"] },
   // 6-5/8"
-  { od: 6.625, weight: 25.20, wall: 0.330, id: 5.965, grades: ["E-75", "X-95", "G-105", "S-135", "Z-140", "V-150"] },
-  { od: 6.625, weight: 27.70, wall: 0.362, id: 5.901, grades: ["E-75", "X-95", "G-105", "S-135", "Z-140", "V-150"] },
+  { od: 6.625, weight: 25.20, wall: 0.330, id: 5.965, connection: "6-5/8 REG",       torqueMin: 42700, torqueMax: 59200, grades: ["E-75", "X-95", "G-105", "S-135", "Z-140", "V-150"] },
+  { od: 6.625, weight: 27.70, wall: 0.362, id: 5.901, connection: "6-5/8 REG",       torqueMin: 47600, torqueMax: 66000, grades: ["E-75", "X-95", "G-105", "S-135", "Z-140", "V-150"] },
 ];
 
 // ----------------------------------------------------------------------
@@ -236,44 +243,46 @@ export interface DrillCollarData {
   wall: number;         // wall thickness (in)
   id: number;           // bore / ID (in)
   connection: string;   // API connection type
+  torqueMin: number;    // min make-up torque (ft-lbs) per API RP 7G
+  torqueMax: number;    // max make-up torque (ft-lbs) per API RP 7G
   material: string;     // material class
 }
 
 export const drillCollarSizes: DrillCollarData[] = [
   // 3-1/8"
-  { od: 3.125, weight: 21.9,  wall: 0.938, id: 1.250, connection: "NC26 (2-3/8 IF)",    material: "AISI 4145H Mod" },
+  { od: 3.125, weight: 21.9,  wall: 0.938, id: 1.250, connection: "NC26 (2-3/8 IF)",  torqueMin: 3800,  torqueMax: 5700,  material: "AISI 4145H Mod" },
   // 3-1/2"
-  { od: 3.500, weight: 26.7,  wall: 1.000, id: 1.500, connection: "NC26 (2-3/8 IF)",    material: "AISI 4145H Mod" },
+  { od: 3.500, weight: 26.7,  wall: 1.000, id: 1.500, connection: "NC26 (2-3/8 IF)",  torqueMin: 4600,  torqueMax: 6400,  material: "AISI 4145H Mod" },
   // 4-1/8"
-  { od: 4.125, weight: 34.7,  wall: 1.063, id: 2.000, connection: "NC31 (2-7/8 IF)",    material: "AISI 4145H Mod" },
+  { od: 4.125, weight: 34.7,  wall: 1.063, id: 2.000, connection: "NC31 (2-7/8 IF)",  torqueMin: 6900,  torqueMax: 9500,  material: "AISI 4145H Mod" },
   // 4-3/4"
-  { od: 4.750, weight: 46.7,  wall: 1.250, id: 2.250, connection: "NC38 (3-1/2 IF)",    material: "AISI 4145H Mod" },
+  { od: 4.750, weight: 46.7,  wall: 1.250, id: 2.250, connection: "NC38 (3-1/2 IF)",  torqueMin: 12700, torqueMax: 17600, material: "AISI 4145H Mod" },
   // 5"
-  { od: 5.000, weight: 53.2,  wall: 1.375, id: 2.250, connection: "NC38 (3-1/2 IF)",    material: "AISI 4145H Mod" },
+  { od: 5.000, weight: 53.2,  wall: 1.375, id: 2.250, connection: "NC38 (3-1/2 IF)",  torqueMin: 12700, torqueMax: 17600, material: "AISI 4145H Mod" },
   // 6"
-  { od: 6.000, weight: 82.6,  wall: 1.875, id: 2.250, connection: "NC46 (4 IF)",        material: "AISI 4145H Mod" },
+  { od: 6.000, weight: 82.6,  wall: 1.875, id: 2.250, connection: "NC46 (4 IF)",      torqueMin: 22100, torqueMax: 30600, material: "AISI 4145H Mod" },
   // 6-1/4"
-  { od: 6.250, weight: 83.3,  wall: 1.719, id: 2.813, connection: "NC46 (4 IF)",        material: "AISI 4145H Mod" },
+  { od: 6.250, weight: 83.3,  wall: 1.719, id: 2.813, connection: "NC46 (4 IF)",      torqueMin: 22100, torqueMax: 30600, material: "AISI 4145H Mod" },
   // 6-1/2"
-  { od: 6.500, weight: 91.7,  wall: 1.844, id: 2.813, connection: "NC46 (4 IF)",        material: "AISI 4145H Mod" },
+  { od: 6.500, weight: 91.7,  wall: 1.844, id: 2.813, connection: "NC46 (4 IF)",      torqueMin: 22100, torqueMax: 30600, material: "AISI 4145H Mod" },
   // 6-3/4"
-  { od: 6.750, weight: 100.5, wall: 1.969, id: 2.813, connection: "NC50 (4-1/2 IF)",    material: "AISI 4145H Mod" },
+  { od: 6.750, weight: 100.5, wall: 1.969, id: 2.813, connection: "NC50 (4-1/2 IF)",  torqueMin: 28900, torqueMax: 40100, material: "AISI 4145H Mod" },
   // 7"
-  { od: 7.000, weight: 109.7, wall: 2.094, id: 2.813, connection: "NC50 (4-1/2 IF)",    material: "AISI 4145H Mod" },
+  { od: 7.000, weight: 109.7, wall: 2.094, id: 2.813, connection: "NC50 (4-1/2 IF)",  torqueMin: 28900, torqueMax: 40100, material: "AISI 4145H Mod" },
   // 7-1/4"
-  { od: 7.250, weight: 119.2, wall: 2.219, id: 2.813, connection: "NC50 (4-1/2 IF)",    material: "AISI 4145H Mod" },
+  { od: 7.250, weight: 119.2, wall: 2.219, id: 2.813, connection: "NC50 (4-1/2 IF)",  torqueMin: 28900, torqueMax: 40100, material: "AISI 4145H Mod" },
   // 8"
-  { od: 8.000, weight: 147.0, wall: 2.500, id: 3.000, connection: "NC56 (5 IF)",        material: "AISI 4145H Mod" },
+  { od: 8.000, weight: 147.0, wall: 2.500, id: 3.000, connection: "NC56 (5 IF)",      torqueMin: 40100, torqueMax: 55600, material: "AISI 4145H Mod" },
   // 9"
-  { od: 9.000, weight: 192.3, wall: 3.000, id: 3.000, connection: "NC61 (5-1/2 IF)",    material: "AISI 4145H Mod" },
+  { od: 9.000, weight: 192.3, wall: 3.000, id: 3.000, connection: "NC61 (5-1/2 IF)",  torqueMin: 54600, torqueMax: 75600, material: "AISI 4145H Mod" },
   // 9-1/2"
-  { od: 9.500, weight: 217.0, wall: 3.250, id: 3.000, connection: "NC70 (6-5/8 REG)",   material: "AISI 4145H Mod" },
+  { od: 9.500, weight: 217.0, wall: 3.250, id: 3.000, connection: "NC70 (6-5/8 REG)", torqueMin: 65200, torqueMax: 90400, material: "AISI 4145H Mod" },
   // 10"
-  { od: 10.000, weight: 243.0, wall: 3.500, id: 3.000, connection: "NC70 (6-5/8 REG)",  material: "AISI 4145H Mod" },
+  { od: 10.000, weight: 243.0, wall: 3.500, id: 3.000, connection: "NC70 (6-5/8 REG)", torqueMin: 65200, torqueMax: 90400, material: "AISI 4145H Mod" },
   // 11"
-  { od: 11.000, weight: 299.1, wall: 4.000, id: 3.000, connection: "NC77 (7-5/8 REG)",  material: "AISI 4145H Mod" },
+  { od: 11.000, weight: 299.1, wall: 4.000, id: 3.000, connection: "NC77 (7-5/8 REG)", torqueMin: 80600, torqueMax: 111700, material: "AISI 4145H Mod" },
   // 12"
-  { od: 12.000, weight: 360.5, wall: 4.500, id: 3.000, connection: "7-5/8 REG",         material: "AISI 4145H Mod" },
+  { od: 12.000, weight: 360.5, wall: 4.500, id: 3.000, connection: "7-5/8 REG",        torqueMin: 89200, torqueMax: 123600, material: "AISI 4145H Mod" },
 ];
 
 // ----------------------------------------------------------------------

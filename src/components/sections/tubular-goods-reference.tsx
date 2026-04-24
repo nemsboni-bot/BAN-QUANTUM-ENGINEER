@@ -369,7 +369,16 @@ export function TubularGoodsReference() {
                     ...(product === "drillcollar"
                       ? [
                           { label: "Connection", value: (selectedRow as DrillCollarData).connection },
+                          { label: "Make-Up Torque (Min)", value: `${(selectedRow as DrillCollarData).torqueMin.toLocaleString()} ft-lbs` },
+                          { label: "Make-Up Torque (Max)", value: `${(selectedRow as DrillCollarData).torqueMax.toLocaleString()} ft-lbs` },
                           { label: "Material",   value: (selectedRow as DrillCollarData).material },
+                        ]
+                      : product === "drillpipe"
+                      ? [
+                          { label: "Connection", value: (selectedRow as DrillPipeData).connection },
+                          { label: "Make-Up Torque (Min)", value: `${(selectedRow as DrillPipeData).torqueMin.toLocaleString()} ft-lbs` },
+                          { label: "Make-Up Torque (Max)", value: `${(selectedRow as DrillPipeData).torqueMax.toLocaleString()} ft-lbs` },
+                          { label: "Available Grades", value: currentGrades.join(", ") },
                         ]
                       : [
                           {
@@ -377,9 +386,7 @@ export function TubularGoodsReference() {
                             value:
                               product === "tubing"
                                 ? (selectedRow as TubingData).end
-                                : product === "casing"
-                                ? "BTC / LTC / STC"
-                                : "Tool Joint (NC/REG)",
+                                : "BTC / LTC / STC",
                           },
                           { label: "Available Grades", value: currentGrades.join(", ") },
                         ]),
@@ -439,11 +446,13 @@ export function TubularGoodsReference() {
                 <p className="text-xs text-steel leading-relaxed">
                   <span className="font-semibold text-foreground">Reference:</span> Dimensions
                   per API Specification 5CT (Casing &amp; Tubing), API 5DP / 7-1 (Drill Pipe
-                  &amp; Drill Collars), and API 5B (Thread Gauging). Drift diameter calculated
-                  per API 5CT Table C.4. Grade mechanical properties per API 5CT Table C.5.
-                  Drill collar weights calculated at 489.5 lb/ft&sup3; steel density. Drill collar
-                  connections per API Spec 7-2. Sour service grades (L-80, C-90, T-95, C-110)
-                  comply with NACE MR0175 / ISO 15156. Values shown are typical — always verify
+                  &amp; Drill Collars), and API 5B (Thread Gauging). Make-up torques per
+                  API RP 7G / 7G-2 with API modified thread compound (friction factor 1.0);
+                  min = 80% of optimum, max = optimum + 10%. Drift diameter calculated per
+                  API 5CT Table C.4. Grade mechanical properties per API 5CT Table C.5.
+                  Drill collar weights calculated at 489.5 lb/ft&sup3; steel density. Connections
+                  per API Spec 7-2. Sour service grades (L-80, C-90, T-95, C-110) comply
+                  with NACE MR0175 / ISO 15156. Values shown are typical — always verify
                   against the applicable edition and the mill certificate for the specific
                   material lot.
                 </p>
@@ -454,7 +463,8 @@ export function TubularGoodsReference() {
                 <p className="text-xs text-steel leading-relaxed">
                   <span className="font-semibold text-foreground">Applicable Standards:</span>{" "}
                   API 5CT · API 5B · API 5L · API 5DP · API Spec 7-1 · API Spec 7-2 ·
-                  API RP 5C1 · API Bulletin 5C3 (formulas) · NACE MR0175 / ISO 15156
+                  API RP 7G · API RP 7G-2 · API RP 5C1 · API Bulletin 5C3 (formulas) ·
+                  NACE MR0175 / ISO 15156
                 </p>
               </div>
             </motion.div>
