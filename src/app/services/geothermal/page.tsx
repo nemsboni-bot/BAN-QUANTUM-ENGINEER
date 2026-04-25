@@ -2,6 +2,7 @@
 
 import { ServicePage } from "@/components/sections/service-page";
 import { TubularGoodsReference } from "@/components/sections/tubular-goods-reference";
+import { ApiFlangeReference } from "@/components/sections/api-flange-reference";
 import { Section, SectionHeader } from "@/components/ui/section";
 import { SteamWellIcon } from "@/components/ui/custom-icons";
 
@@ -98,6 +99,15 @@ export default function GeothermalPage() {
           subtitle="Interactive reference for API 5CT casing & tubing, API 5DP drill pipe, and API 7-1 drill collar specifications. Select a product type, OD size, and weight to view dimensions and properties."
         />
         <TubularGoodsReference />
+      </Section>
+
+      {/* API 6A Flange Dimension Reference Section */}
+      <Section>
+        <SectionHeader
+          title="API 6A Flange Dimension Reference"
+          subtitle="Interactive slide rule for API 6A / ISO 10423 wellhead flange dimensions. Select a nominal bore size and working pressure to view flange OD, bolt pattern, ring gasket, and key dimensions."
+        />
+        <ApiFlangeReference />
       </Section>
     </>
   );
