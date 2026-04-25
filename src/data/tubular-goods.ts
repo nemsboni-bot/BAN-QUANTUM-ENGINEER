@@ -234,6 +234,94 @@ export const drillPipeSizes: DrillPipeData[] = [
 ];
 
 // ----------------------------------------------------------------------
+// API 7-1 Heavy Weight Drill Pipe (HWDP)
+// ----------------------------------------------------------------------
+
+export interface HwdpData {
+  od: number;            // pipe body OD (in)
+  id: number;            // pipe body ID (in)
+  wall: number;          // wall thickness (in)
+  weight: number;        // adjusted weight incl. upsets & TJ (lb/ft)
+  plainEndWeight: number; // calculated plain-end weight (lb/ft)
+  centerUpsetOd: number; // center upset OD (in)
+  centerUpsetLen: number; // center upset length (in)
+  connection: string;    // tool joint connection type
+  tjOd: number;          // tool joint OD (in)
+  tjId: number;          // tool joint ID (in)
+  pinLength: number;     // pin tool joint OD length (in)
+  boxLength: number;     // box tool joint OD length (in)
+  drift: number;         // drift diameter (in)
+  torqueMin: number;     // min recommended make-up torque (ft-lbs)
+  torqueRec: number;     // recommended make-up torque (ft-lbs)
+  torqueMax: number;     // max recommended make-up torque (ft-lbs)
+  oal: number;           // overall length (ft)
+  tensileBody: number;   // pipe body tensile strength (lbs)
+  torsionalBody: number; // pipe body torsional strength (ft-lbs)
+  tensileTj: number;     // tool joint tensile strength (lbs)
+  torsionalTj: number;   // tool joint torsional strength (ft-lbs)
+  tjPipeRatio: number;   // TJ / pipe torsional ratio
+  internalPressure: number; // internal pressure capacity (psi)
+  collapsePressure: number; // collapse pressure capacity (psi)
+}
+
+export const hwdpSizes: HwdpData[] = [
+  // 3-1/2" HWDP per API Spec 7-1
+  {
+    od: 3.500,
+    id: 2.063,
+    wall: 0.719,
+    weight: 25.31,
+    plainEndWeight: 21.35,
+    centerUpsetOd: 4.000,
+    centerUpsetLen: 26.50,
+    connection: "NC38 (3-1/2 IF)",
+    tjOd: 4.750,
+    tjId: 2.063,
+    pinLength: 20.0,
+    boxLength: 16.0,
+    drift: 1.813,
+    torqueMin: 11400,
+    torqueRec: 14200,
+    torqueMax: 17100,
+    oal: 30.00,
+    tensileBody: 345400,
+    torsionalBody: 19500,
+    tensileTj: 542700,
+    torsionalTj: 22400,
+    tjPipeRatio: 1.149,
+    internalPressure: 11270,
+    collapsePressure: 10940,
+  },
+  // 5" HWDP (welded construction)
+  {
+    od: 5.000,
+    id: 3.000,
+    wall: 1.000,
+    weight: 54.89,
+    plainEndWeight: 44.20,
+    centerUpsetOd: 5.500,
+    centerUpsetLen: 26.50,
+    connection: "NC50 (4-1/2 IF)",
+    tjOd: 6.625,
+    tjId: 3.000,
+    pinLength: 36.0,
+    boxLength: 30.0,
+    drift: 2.750,
+    torqueMin: 28900,
+    torqueRec: 34700,
+    torqueMax: 40500,
+    oal: 31.00,
+    tensileBody: 691150,
+    torsionalBody: 56496,
+    tensileTj: 1397017,
+    torsionalTj: 57800,
+    tjPipeRatio: 1.023,
+    internalPressure: 22647,
+    collapsePressure: 17600,
+  },
+];
+
+// ----------------------------------------------------------------------
 // API 7-1 Drill Collars
 // ----------------------------------------------------------------------
 

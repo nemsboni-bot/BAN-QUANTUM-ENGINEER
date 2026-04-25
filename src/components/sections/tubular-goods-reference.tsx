@@ -8,20 +8,23 @@ import {
   tubingSizes,
   drillPipeSizes,
   drillCollarSizes,
+  hwdpSizes,
   gradeProperties,
   drillPipeGradeProperties,
   type CasingData,
   type TubingData,
   type DrillPipeData,
   type DrillCollarData,
+  type HwdpData,
 } from "@/data/tubular-goods";
 
-type Product = "casing" | "tubing" | "drillpipe" | "drillcollar";
+type Product = "casing" | "tubing" | "drillpipe" | "hwdp" | "drillcollar";
 
 const productTabs: { id: Product; label: string; spec: string; icon: string }[] = [
   { id: "casing",      label: "Casing",       spec: "API 5CT",       icon: "OD 4-1/2\" – 20\""   },
   { id: "tubing",      label: "Tubing",       spec: "API 5CT",       icon: "OD 1.050\" – 4-1/2\"" },
   { id: "drillpipe",   label: "Drill Pipe",   spec: "API 5DP / 7-1", icon: "OD 2-3/8\" – 6-5/8\"" },
+  { id: "hwdp",        label: "HWDP",         spec: "API 7-1",       icon: "OD 3-1/2\" & 5\""    },
   { id: "drillcollar", label: "Drill Collar", spec: "API 7-1",       icon: "OD 3-1/8\" – 12\""   },
 ];
 
@@ -198,6 +201,13 @@ export function TubularGoodsReference() {
         specTitle: "API 5DP / 7-1 Drill Pipe",
       };
     }
+    if (product === "hwdp") {
+      return {
+        rows: hwdpSizes,
+        uniqueOds: Array.from(new Set(hwdpSizes.map((c) => c.od))),
+        specTitle: "API 7-1 HWDP",
+      };
+    }
     return {
       rows: drillCollarSizes,
       uniqueOds: Array.from(new Set(drillCollarSizes.map((c) => c.od))),
@@ -221,6 +231,8 @@ export function TubularGoodsReference() {
         ? tubingSizes[0].od
         : p === "drillpipe"
         ? drillPipeSizes[0].od
+        : p === "hwdp"
+        ? hwdpSizes[0].od
         : drillCollarSizes[0].od;
     setSelectedOd(firstOd);
     setSelectedIdx(0);
@@ -231,11 +243,10 @@ export function TubularGoodsReference() {
     setSelectedIdx(0);
   };
 
-  // Grade properties for the selected row (drill collars use material, not grades)
   const currentGrades = selectedRow && "grades" in selectedRow ? (selectedRow as CasingData | TubingData | DrillPipeData).grades : [];
   const gradeTable =
     product === "drillpipe" ? drillPipeGradeProperties : gradeProperties;
-  const gradeDetails = product !== "drillcollar" ? gradeTable.filter((g) => currentGrades.includes(g.grade)) : [];
+  const gradeDetails = (product !== "drillcollar" && product !== "hwdp") ? gradeTable.filter((g) => currentGrades.includes(g.grade)) : [];
 
   return (
     <div className="bg-surface border border-border rounded-2xl overflow-hidden">
@@ -247,7 +258,7 @@ export function TubularGoodsReference() {
           </div>
           <div>
             <h3 className="text-lg font-bold text-foreground">API Tubular Goods Reference</h3>
-            <p className="text-xs text-steel">Casing, tubing, drill pipe &amp; drill collars per API 5CT / 5DP / 7-1</p>
+            <p className="text-xs text-steel">Casing, tubing, drill pipe, HWDP &amp; drill collars per API 5CT / 5DP / 7-1</p>
           </div>
         </div>
       </div>
@@ -362,11 +373,23 @@ export function TubularGoodsReference() {
                     { label: "Outside Diameter (OD)", value: `${selectedRow.od.toFixed(3)}"` },
                     { label: product === "drillcollar" ? "Bore (ID)" : "Inside Diameter (ID)", value: `${selectedRow.id.toFixed(3)}"` },
                     { label: "Wall Thickness (t)",    value: `${selectedRow.wall.toFixed(3)}"` },
-                    ...("drift" in selectedRow
+                    ...("drift" in selectedRow && product !== "hwdp"
                       ? [{ label: "Drift Diameter", value: `${(selectedRow as CasingData | TubingData).drift.toFixed(3)}"` }]
                       : []),
-                    { label: "Nominal Weight",        value: `${selectedRow.weight.toFixed(2)} lb/ft` },
-                    ...(product === "drillcollar"
+                    { label: product === "hwdp" ? "Adjusted Weight" : "Nominal Weight", value: `${selectedRow.weight.toFixed(2)} lb/ft` },
+                    ...(product === "hwdp"
+                      ? [
+                          { label: "Plain End Weight", value: `${(selectedRow as HwdpData).plainEndWeight.toFixed(2)} lb/ft` },
+                          { label: "Center Upset OD", value: `${(selectedRow as HwdpData).centerUpsetOd.toFixed(3)}"` },
+                          { label: "Overall Length", value: `${(selectedRow as HwdpData).oal.toFixed(2)} ft` },
+                          { label: "Drift Diameter", value: `${(selectedRow as HwdpData).drift.toFixed(3)}"` },
+                          { label: "Connection", value: (selectedRow as HwdpData).connection },
+                          { label: "Tool Joint OD × ID", value: `${(selectedRow as HwdpData).tjOd.toFixed(3)}" × ${(selectedRow as HwdpData).tjId.toFixed(3)}"` },
+                          { label: "Make-Up Torque (Min)", value: `${(selectedRow as HwdpData).torqueMin.toLocaleString()} ft-lbs` },
+                          { label: "Make-Up Torque (Rec)", value: `${(selectedRow as HwdpData).torqueRec.toLocaleString()} ft-lbs` },
+                          { label: "Make-Up Torque (Max)", value: `${(selectedRow as HwdpData).torqueMax.toLocaleString()} ft-lbs` },
+                        ]
+                      : product === "drillcollar"
                       ? [
                           { label: "Connection", value: (selectedRow as DrillCollarData).connection },
                           { label: "Make-Up Torque (Min)", value: `${(selectedRow as DrillCollarData).torqueMin.toLocaleString()} ft-lbs` },
@@ -440,13 +463,60 @@ export function TubularGoodsReference() {
                 </div>
               )}
 
+              {/* HWDP Mechanical Performance */}
+              {product === "hwdp" && selectedRow && (
+                <div className="mt-6">
+                  <h4 className="text-sm font-semibold text-foreground uppercase tracking-wider mb-3">
+                    Mechanical Performance (per API 7-1)
+                  </h4>
+                  <div className="overflow-x-auto rounded-lg border border-border">
+                    <table className="w-full text-sm">
+                      <thead className="bg-background/60">
+                        <tr className="text-left text-xs text-steel uppercase">
+                          <th className="px-3 py-2 font-semibold">Property</th>
+                          <th className="px-3 py-2 font-semibold text-right">Pipe Body</th>
+                          <th className="px-3 py-2 font-semibold text-right">Tool Joint</th>
+                        </tr>
+                      </thead>
+                      <tbody className="text-foreground">
+                        <tr className="border-t border-border">
+                          <td className="px-3 py-2 text-steel">Tensile Strength</td>
+                          <td className="px-3 py-2 font-mono text-right">{(selectedRow as HwdpData).tensileBody.toLocaleString()} lbs</td>
+                          <td className="px-3 py-2 font-mono text-right">{(selectedRow as HwdpData).tensileTj.toLocaleString()} lbs</td>
+                        </tr>
+                        <tr className="border-t border-border">
+                          <td className="px-3 py-2 text-steel">Torsional Strength</td>
+                          <td className="px-3 py-2 font-mono text-right">{(selectedRow as HwdpData).torsionalBody.toLocaleString()} ft-lbs</td>
+                          <td className="px-3 py-2 font-mono text-right">{(selectedRow as HwdpData).torsionalTj.toLocaleString()} ft-lbs</td>
+                        </tr>
+                        <tr className="border-t border-border">
+                          <td className="px-3 py-2 text-steel">TJ / Pipe Torsional Ratio</td>
+                          <td className="px-3 py-2" />
+                          <td className="px-3 py-2 font-mono font-bold text-accent text-right">{(selectedRow as HwdpData).tjPipeRatio.toFixed(3)}</td>
+                        </tr>
+                        <tr className="border-t border-border">
+                          <td className="px-3 py-2 text-steel">Internal Pressure Capacity</td>
+                          <td className="px-3 py-2 font-mono text-right">{(selectedRow as HwdpData).internalPressure.toLocaleString()} psi</td>
+                          <td className="px-3 py-2" />
+                        </tr>
+                        <tr className="border-t border-border">
+                          <td className="px-3 py-2 text-steel">Collapse Pressure Capacity</td>
+                          <td className="px-3 py-2 font-mono text-right">{(selectedRow as HwdpData).collapsePressure.toLocaleString()} psi</td>
+                          <td className="px-3 py-2" />
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              )}
+
               {/* Reference note */}
               <div className="mt-6 flex items-start gap-2 px-4 py-3 bg-accent/5 border border-accent/10 rounded-lg">
                 <Info className="w-4 h-4 text-accent mt-0.5 shrink-0" />
                 <p className="text-xs text-steel leading-relaxed">
                   <span className="font-semibold text-foreground">Reference:</span> Dimensions
-                  per API Specification 5CT (Casing &amp; Tubing), API 5DP / 7-1 (Drill Pipe
-                  &amp; Drill Collars), and API 5B (Thread Gauging). Make-up torques per
+                  per API Specification 5CT (Casing &amp; Tubing), API 5DP / 7-1 (Drill Pipe,
+                  HWDP &amp; Drill Collars), and API 5B (Thread Gauging). Make-up torques per
                   API RP 7G / 7G-2 with API modified thread compound (friction factor 1.0);
                   min = 80% of optimum, max = optimum + 10%. Drift diameter calculated per
                   API 5CT Table C.4. Grade mechanical properties per API 5CT Table C.5.
