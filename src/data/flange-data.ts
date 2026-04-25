@@ -106,6 +106,9 @@ export const flangeData: FlangeData[] = [
   { size: '16-3/4"',  bore: 16.750, pressure: 5000,  flangeType: "6B",  od: 34.000, boltCircle: 29.500, numBolts: 16, boltSize: '1-1/2"', thickness: 4.25, hubOd: 22.50, ringGasket: "RX-66",  ringType: "RX" },
   { size: '16-3/4"',  bore: 16.750, pressure: 10000, flangeType: "6BX", od: 38.750, boltCircle: 34.000, numBolts: 20, boltSize: '1-7/8"', thickness: 5.75, hubOd: 24.00, ringGasket: "BX-172", ringType: "BX" },
 
+  // ---- 20-3/4" ----
+  { size: '20-3/4"',  bore: 20.750, pressure: 3000,  flangeType: "6B",  od: 36.000, boltCircle: 32.000, numBolts: 16, boltSize: '1-1/2"', thickness: 3.38, hubOd: 25.25, ringGasket: "RX-70",  ringType: "RX" },
+
   // ---- 21-1/4" ----
   { size: '21-1/4"',  bore: 21.250, pressure: 2000,  flangeType: "6B",  od: 34.750, boltCircle: 30.500, numBolts: 16, boltSize: '1-3/8"', thickness: 2.88, hubOd: 25.50, ringGasket: "R-73",   ringType: "R"  },
   { size: '21-1/4"',  bore: 21.250, pressure: 3000,  flangeType: "6B",  od: 36.750, boltCircle: 32.500, numBolts: 16, boltSize: '1-1/2"', thickness: 3.50, hubOd: 26.00, ringGasket: "RX-73",  ringType: "RX" },
