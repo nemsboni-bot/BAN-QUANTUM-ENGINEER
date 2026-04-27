@@ -116,6 +116,10 @@ export const flangeData: FlangeData[] = [
   // ---- 26-3/4" ----
   { size: '26-3/4"',  bore: 26.750, pressure: 2000,  flangeType: "6B",  od: 38.750, boltCircle: 34.500, numBolts: 16, boltSize: '1-1/2"', thickness: 3.00, hubOd: 31.00, ringGasket: "R-74",   ringType: "R"  },
   { size: '26-3/4"',  bore: 26.750, pressure: 3000,  flangeType: "6B",  od: 41.000, boltCircle: 36.500, numBolts: 20, boltSize: '1-1/2"', thickness: 3.75, hubOd: 32.00, ringGasket: "RX-74",  ringType: "RX" },
+
+  // ---- 29-1/2" ----
+  { size: '29-1/2"',  bore: 29.500, pressure: 2000,  flangeType: "6B",  od: 43.000, boltCircle: 38.500, numBolts: 20, boltSize: '1-1/2"', thickness: 3.25, hubOd: 34.00, ringGasket: "R-75",   ringType: "R"  },
+  { size: '29-1/2"',  bore: 29.500, pressure: 3000,  flangeType: "6B",  od: 45.250, boltCircle: 40.500, numBolts: 20, boltSize: '1-5/8"', thickness: 4.00, hubOd: 35.00, ringGasket: "RX-75",  ringType: "RX" },
 ];
 
 export const allFlangeSizes = Array.from(new Set(flangeData.map((f) => f.size)));
