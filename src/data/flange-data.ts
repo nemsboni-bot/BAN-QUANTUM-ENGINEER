@@ -2,8 +2,9 @@
   API 6A Flange Reference Data
   -----------------------------
   Sources:
-    - API Specification 6A (Wellhead and Christmas Tree Equipment)
-    - API 6A / ISO 10423
+    - API Specification 6A / ISO 10423 (Wellhead and Christmas Tree Equipment)
+    - Woodco USA Flange Slide Rule Program
+    - API 6A Tables B.2, B.3, B.4, B.5
 
   NOTES:
     • All dimensions in inches, pressures in PSI working pressure.
@@ -105,6 +106,12 @@ export const flangeData: FlangeData[] = [
   { size: '16-3/4"',  bore: 16.750, pressure: 3000,  flangeType: "6B",  od: 31.000, boltCircle: 27.000, numBolts: 16, boltSize: '1-3/8"', thickness: 3.13, hubOd: 21.00, ringGasket: "RX-66",  ringType: "RX" },
   { size: '16-3/4"',  bore: 16.750, pressure: 5000,  flangeType: "6B",  od: 34.000, boltCircle: 29.500, numBolts: 16, boltSize: '1-1/2"', thickness: 4.25, hubOd: 22.50, ringGasket: "RX-66",  ringType: "RX" },
   { size: '16-3/4"',  bore: 16.750, pressure: 10000, flangeType: "6BX", od: 38.750, boltCircle: 34.000, numBolts: 20, boltSize: '1-7/8"', thickness: 5.75, hubOd: 24.00, ringGasket: "BX-172", ringType: "BX" },
+
+  // ---- 18-3/4" ----
+  { size: '18-3/4"',  bore: 18.750, pressure: 2000,  flangeType: "6B",  od: 32.000, boltCircle: 28.000, numBolts: 16, boltSize: '1-3/8"', thickness: 2.75, hubOd: 23.00, ringGasket: "R-69",   ringType: "R"  },
+  { size: '18-3/4"',  bore: 18.750, pressure: 3000,  flangeType: "6B",  od: 33.500, boltCircle: 29.500, numBolts: 16, boltSize: '1-1/2"', thickness: 3.38, hubOd: 23.50, ringGasket: "RX-69",  ringType: "RX" },
+  { size: '18-3/4"',  bore: 18.750, pressure: 5000,  flangeType: "6B",  od: 36.750, boltCircle: 32.000, numBolts: 16, boltSize: '1-5/8"', thickness: 4.50, hubOd: 25.00, ringGasket: "RX-69",  ringType: "RX" },
+  { size: '18-3/4"',  bore: 18.750, pressure: 10000, flangeType: "6BX", od: 43.000, boltCircle: 38.000, numBolts: 20, boltSize: '2"',     thickness: 6.25, hubOd: 27.00, ringGasket: "BX-174", ringType: "BX" },
 
   // ---- 20-3/4" ----
   { size: '20-3/4"',  bore: 20.750, pressure: 3000,  flangeType: "6B",  od: 36.000, boltCircle: 32.000, numBolts: 16, boltSize: '1-1/2"', thickness: 3.38, hubOd: 25.25, ringGasket: "RX-70",  ringType: "RX" },
